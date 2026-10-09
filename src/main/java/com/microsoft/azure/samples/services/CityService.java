@@ -43,4 +43,10 @@ public class CityService {
         TypedQuery<City> query = em.createNamedQuery("City.findAll", City.class);
         return query.getResultList();
      }
+     @Transactional
+     public List<String> findByPopulation(int population) {
+        TypedQuery<String> query = em.createNamedQuery("City.findByPopulation", String.class);
+        query.setParameter("population", population);
+        return query.getResultList();
+     }
 }

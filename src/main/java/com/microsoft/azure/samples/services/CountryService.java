@@ -38,4 +38,10 @@ public class CountryService {
         query.setParameter("continent", continent);
         return query.getResultList();
     }
+    @Transactional(SUPPORTS)
+    public List<Country> findByPopulation(int population) {
+        TypedQuery<Country> query = em.createNamedQuery("Country.findByPopulation", Country.class);
+        query.setParameter("population", population);
+        return query.getResultList();
+    }
 }

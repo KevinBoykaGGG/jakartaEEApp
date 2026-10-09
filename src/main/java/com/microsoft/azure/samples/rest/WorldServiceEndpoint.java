@@ -72,4 +72,21 @@ public class WorldServiceEndpoint {
         List<City> cities = citySvc.allCities();
         return Response.ok(cities, MediaType.APPLICATION_JSON).build();
     }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/cities/{population}")
+    public Response getByPopulation (@PathParam("population") int population) {
+        List<String> cities = citySvc.findByPopulation(population);
+        if(cities.isEmpty()) return Response.status(Response.Status.NOT_FOUND).build();
+        return Response.ok(cities, MediaType.APPLICATION_JSON).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/country/{population}")
+    public Response getCountiesByPopulation(@PathParam("population") int population) {
+        List<Country> countries = countrySvc.findByPopulation(population);
+        if(countries.isEmpty()) return Response.status(Response.Status.NOT_FOUND).build();
+        return Response.ok(countries, MediaType.APPLICATION_JSON).build();
+    }
 }
